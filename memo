@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+
+"""
+
+memo[rize] a set of snippets, by typing them out and diffing the results.
+
+"""
+
+__author__ = "Weirong Wu, Arya Kumar"
+__version__ = "0.0.1"
+__maintainer__ = "Atlas Digital Consulting Group"
+__email__ = "atlasdigitalum [at] gmail [dot] com"
+
+import argparse
+import os
+import pathlib
+import random
+import re
+import subprocess
+import tempfile
+
+### Constants ###
+
+SNIPPETS_DIR = (pathlib.Path(__file__).parent / "snippets").absolute()
+EDITOR = os.environ.get("EDITOR", "vim")
+SOLUTION = SNIPPETS_DIR / "solution.out"
+CANDIDATE = SNIPPETS_DIR / "candidate.out"
+
+
+def open_in_editor(initial_string: str) -> str:
+    """Open $EDITOR with the initial string, and return the result."""
+    tmp_file = tempfile.NamedTemporaryFile(mode="w+")
+
+    with open(tmp_file.name, "w") as f:
+        f.write(initial_string)
+
+    # Open the file in $EDITOR:
+    subprocess.run([EDITOR, f.name])
+
+    with open(tmp_file.name, "r") as f:
+        return f.read()
+
+
+def test_snippet(snippet: str):
+    """Have the user fill in the snippet in $EDITOR, and diff the results."""
+
+    initial = re.sub(r"<<<.*?>>>", "<REPLACE ME>", snippet, flags=re.DOTALL)
+    solution = snippet.replace("<<<", "").replace(">>>", "")
+
+    candidate = open_in_editor(initial)
+
+    # Diff the results:
+    with SOLUTION.open("w") as f:
+        f.write(solution)
+
+    with CANDIDATE.open("w") as f:
+        f.write(candidate)
+
+    # hide the output of diff:
+    if not (
+        subprocess.run(
+            ["diff", "-w", str(SOLUTION), str(CANDIDATE)], stdout=subprocess.PIPE
+        ).returncode
+    ):
+        print("Correct!")
+    else:
+        # Show the side-by-side diff:
+        subprocess.run(
+            ["git", "--no-pager", "diff", "--no-index", str(CANDIDATE), str(SOLUTION)]
+        )
+        print("Incorrect :(")
+
+    # Clean up:
+    SOLUTION.unlink()
+    CANDIDATE.unlink()
+
+
+def main():
+    """If no arguments are passed, test all snippets. Otherwise test the specified snippets."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-s", "--snippets", nargs="+")
+    args = parser.parse_args()
+
+    # If no snippets are specified, test all snippets:
+    if not args.snippets:
+        args.snippets = [f"snippets/{f.name}" for f in SNIPPETS_DIR.iterdir()]
+    
+    # shuffle the snippets:
+    random.shuffle(args.snippets)
+
+    for i, snippet in enumerate(args.snippets):
+        with open(snippet, "r") as f:
+            test_snippet(f.read())
+
+        if i < len(args.snippets) - 1:
+            input("Press enter to continue...")
+
+
+if __name__ == "__main__":
+    main()
