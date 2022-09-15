@@ -21,8 +21,8 @@ Here are the list of supported snippets for practice, with all languages followi
 | Union-Find: Rank & Path Compression | union_find |
 | Circular Buffer | circular_buffer |
 | Dijkstra's Single-Source Shortest Path Algorithm | dijkstra |
-| Bellman-Ford (Negative Cycle) | bellman-ford |
-| Floyd-Warshall (Transitive Closure) | floyd-warshall |
+| Bellman-Ford (Negative Cycle) | bellman_ford |
+| Floyd-Warshall (Transitive Closure) | floyd_warshall |
 | Min Trees | min_trees |
 | Segment Trees | segment_trees |
 | Square Root Trees | sqrt_trees |
