@@ -25,6 +25,7 @@ Here are the list of supported snippets for practice, with all languages followi
 | Floyd-Warshall (Transitive Closure) | floyd-warshall |
 | Min Trees | min_trees |
 | Segment Trees | segment_trees |
+| Square Root Trees | sqrt_trees |
 | AVL Trees | avl |
 | Heaps | heaps |
 | Sorting Algorithms | sorting |
