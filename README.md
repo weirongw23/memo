@@ -62,7 +62,7 @@ Atlas Digital Consulting Group (atlasdigitalum [at] gmail [dot] com)
 
 MIT License.
 
-Copyright (c) 2022-Present Weirong Wu and Arya Kumar
+Copyright &copy; 2022-Present. Weirong Wu and Arya Kumar
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
