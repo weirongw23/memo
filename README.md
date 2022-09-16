@@ -4,6 +4,26 @@ An open-sourced spaced repetition tool for commiting code and computer science c
 
 The program makes you type out the answers to the question, diffs the result, and gives feedback.
 
+## Getting Started
+
+To get started, clone the repo by typing (one or the other)
+
+```
+# if you're using SSH
+git clone git@github.com:weirongw23/memo.git
+
+# if you're using HTTPS
+git clone https://github.com/weirongw23/memo.git
+```
+
+Once you have it installed, open your favorite terminal (Vim, Emacs, etc.) and navigate to the folder (could be inside "Downloads" if you're on a Mac) by typing
+
+```
+cd <location>/memo
+```
+
+where `<location>` is your path to memo.
+
 ## Usage
 
 To practice **code snippets**, enter the following command.
