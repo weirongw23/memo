@@ -38,6 +38,7 @@ Here are the list of supported snippets for practice, with all languages followi
 | Depth-First Search | dfs |
 | Breadth-First Search | bfs |
 | Binary Search | binary_search |
+| Fast Exponentiation | pow |
 | Union-Find: Rank & Path Compression | union_find |
 | Circular Buffer | circular_buffer |
 | Dijkstra's Single-Source Shortest Path Algorithm | dijkstra |
@@ -80,6 +81,4 @@ Atlas Digital Consulting Group (atlasdigitalum [at] gmail [dot] com)
 
 ## License
 
-MIT License.
-
-Copyright &copy; 2022-Present.
+MIT License. Copyright &copy; 2022-Present.
